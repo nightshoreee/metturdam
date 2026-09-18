@@ -1,7 +1,7 @@
 // api.js -- shared fetch helpers for the Mettur Dam Irrigation frontend.
 // Change API_BASE if your Flask backend runs somewhere other than
 // localhost:5000 (e.g. after deploying it to a hosting service).
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = "metturdam-production.up.railway.app";
 
 async function apiRequest(path, options = {}) {
     const opts = {

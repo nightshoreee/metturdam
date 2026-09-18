@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farmers | Mettur Dam Irrigation</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<div id="sidebar"></div>
+<div class="main-content">
+  <div id="topbar" class="topbar"></div>
+  <div class="page-content">
+    <div id="alert-box"></div>
+
+    <div class="panel">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+        <div class="d-flex gap-2">
+          <input type="text" id="search-input" class="form-control" placeholder="Search name, village or phone" style="min-width:260px;">
+          <button class="btn btn-outline-secondary" onclick="loadFarmers()"><i class="bi bi-search"></i></button>
+        </div>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#farmerModal" onclick="openAddModal()">
+          <i class="bi bi-plus-lg"></i> Add Farmer
+        </button>
+      </div>
+      <div class="table-responsive-wrap">
+        <table class="data-table">
+          <thead><tr>
+            <th>ID</th><th>Name</th><th>Phone</th><th>Village</th><th>Registered</th><th>Status</th><th>Actions</th>
+          </tr></thead>
+          <tbody id="farmers-tbody"><tr><td colspan="7">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add/Edit modal -->
+<div class="modal fade" id="farmerModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="farmerModalTitle">Add Farmer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="f-farmer-id">
+        <div class="mb-3"><label class="form-label">Name</label><input class="form-control" id="f-name"></div>
+        <div class="mb-3"><label class="form-label">Phone</label><input class="form-control" id="f-phone"></div>
+        <div class="mb-3"><label class="form-label">Village</label><input class="form-control" id="f-village"></div>
+        <div class="mb-3">
+          <label class="form-label">Status</label>
+          <select class="form-select" id="f-status"><option>ACTIVE</option><option>INACTIVE</option></select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" onclick="saveFarmer()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- View farmer detail modal -->
+<div class="modal fade" id="farmerDetailModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detailModalTitle">Farmer Detail</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="detailModalBody">Loading...</div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script>renderLayout('farmers');</script>
+<script src="js/farmers.js"></script>
+</body>
+</html>

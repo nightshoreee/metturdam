@@ -1,0 +1,20 @@
+# Environment / secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Node (if any tooling is added later)
+node_modules/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# NOTE: database/*.sql files are intentionally NOT ignored.
+# They are part of the academic deliverable and must be committed.

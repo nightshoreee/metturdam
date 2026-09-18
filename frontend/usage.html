@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Water Usage | Mettur Dam Irrigation</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<div id="sidebar"></div>
+<div class="main-content">
+  <div id="topbar" class="topbar"></div>
+  <div class="page-content">
+    <div id="alert-box"></div>
+
+    <div class="panel">
+      <h2 class="h5">Record Water Usage</h2>
+      <p class="text-muted small">Recording usage here automatically creates or updates the matching bill (see trg_after_usage_insert).</p>
+      <div class="row g-3 align-items-end">
+        <div class="col-md-3 form-section">
+          <label class="form-label">Schedule</label>
+          <select class="form-select" id="u-schedule-id"></select>
+        </div>
+        <div class="col-md-3 form-section">
+          <label class="form-label">Measured Water (litres)</label>
+          <input type="number" step="0.01" class="form-control" id="u-measured">
+        </div>
+        <div class="col-md-3 form-section">
+          <label class="form-label">Meter Reading (optional)</label>
+          <input type="number" step="0.01" class="form-control" id="u-meter">
+        </div>
+        <div class="col-md-3 form-section">
+          <button class="btn btn-primary w-100" onclick="recordUsage()">Record Usage</button>
+        </div>
+        <div class="col-12 form-section">
+          <label class="form-label">Remarks (optional)</label>
+          <input class="form-control" id="u-remarks">
+        </div>
+      </div>
+      <div id="compare-result"></div>
+    </div>
+
+    <div class="panel">
+      <h2 class="h5">Scheduled vs Actual (KILLER FEATURE 5)</h2>
+      <div class="row g-2 align-items-end mb-2">
+        <div class="col-md-4">
+          <label class="form-label">Check a specific schedule</label>
+          <select class="form-select" id="cmp-schedule-id"></select>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-outline-primary w-100" onclick="compareSchedule()">Compare</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 class="h5">All Usage Records</h2>
+      <div class="table-responsive-wrap">
+        <table class="data-table">
+          <thead><tr><th>ID</th><th>Farmer</th><th>Schedule</th><th>Measured Water</th><th>Recorded At</th><th>Meter</th><th>Remarks</th></tr></thead>
+          <tbody id="usage-tbody"><tr><td colspan="7">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script>renderLayout('usage');</script>
+<script src="js/usage.js"></script>
+</body>
+</html>

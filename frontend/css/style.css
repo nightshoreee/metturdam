@@ -1,0 +1,173 @@
+/* =====================================================================
+   style.css -- base styles for the Mettur Dam Irrigation dashboard.
+   Theme: water / irrigation / government infrastructure.
+   ===================================================================== */
+
+:root {
+    --brand-dark:   #0b3d5c;
+    --brand:        #12578a;
+    --brand-light:  #1a6fb0;
+    --accent:       #2e9cca;
+    --bg:           #f2f5f7;
+    --surface:      #ffffff;
+    --border:       #dfe6ec;
+    --text:         #1f2d3a;
+    --text-muted:   #5c6b7a;
+    --success:      #1c8a4b;
+    --warning:      #b9791a;
+    --danger:       #c23b3b;
+    --sidebar-width: 250px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+
+/* --------------------------- Sidebar --------------------------- */
+#sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: var(--sidebar-width);
+    background: var(--brand-dark);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.2rem 1rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.sidebar-brand i { font-size: 1.6rem; color: var(--accent); }
+.sidebar-brand small { font-weight: 400; opacity: 0.75; font-size: 0.7rem; }
+
+.sidebar-nav { flex: 1; padding: 0.5rem 0; }
+.sidebar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: rgba(255,255,255,0.82);
+    padding: 0.65rem 1.1rem;
+    font-size: 0.92rem;
+    border-left: 3px solid transparent;
+    text-decoration: none;
+}
+.sidebar-nav .nav-link:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.sidebar-nav .nav-link.active {
+    background: rgba(255,255,255,0.12);
+    border-left-color: var(--accent);
+    color: #fff;
+    font-weight: 600;
+}
+.sidebar-nav .nav-link i { width: 1.2rem; text-align: center; }
+
+.sidebar-footer {
+    padding: 0.8rem 1rem;
+    font-size: 0.7rem;
+    opacity: 0.6;
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+/* --------------------------- Main layout --------------------------- */
+.main-content { margin-left: var(--sidebar-width); min-height: 100vh; }
+
+.topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.topbar .page-title { margin: 0; font-size: 1.35rem; font-weight: 600; color: var(--brand-dark); }
+.topbar-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+.page-content { padding: 1.5rem 1.75rem 3rem; }
+
+/* --------------------------- Cards / tables --------------------------- */
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+.panel h2, .panel h3 { margin-top: 0; color: var(--brand-dark); }
+
+table.data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+table.data-table th, table.data-table td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: middle;
+}
+table.data-table th {
+    background: #f7fafc;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+table.data-table tbody tr:hover { background: #f7fafc; }
+
+.table-responsive-wrap { overflow-x: auto; }
+
+/* --------------------------- Status badges --------------------------- */
+.status-badge {
+    display: inline-block;
+    padding: 0.22rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+.badge-active     { background: #e3f6ec; color: var(--success); }
+.badge-approved   { background: #e3f6ec; color: var(--success); }
+.badge-completed  { background: #e3f6ec; color: var(--success); }
+.badge-pending    { background: #fdf2e0; color: var(--warning); }
+.badge-maintenance{ background: #fdf2e0; color: var(--warning); }
+.badge-rejected   { background: #fbe6e6; color: var(--danger); }
+.badge-cancelled  { background: #fbe6e6; color: var(--danger); }
+.badge-inactive   { background: #eceff2; color: var(--text-muted); }
+
+/* --------------------------- Forms --------------------------- */
+.form-section { margin-bottom: 1rem; }
+.form-section label { font-weight: 600; font-size: 0.85rem; color: var(--text); }
+.check-result {
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.check-result.ok  { background: #e3f6ec; color: var(--success); }
+.check-result.bad { background: #fbe6e6; color: var(--danger); }
+
+/* --------------------------- Utility bars --------------------------- */
+.utilization-bar { background: #e9edf1; border-radius: 6px; height: 10px; overflow: hidden; }
+.utilization-bar-fill { height: 100%; background: var(--accent); }
+
+.actions-cell { white-space: nowrap; }
+.actions-cell .btn { margin-right: 0.25rem; }
+
+@media (max-width: 900px) {
+    #sidebar { transform: translateX(-100%); transition: transform 0.2s; }
+    .main-content { margin-left: 0; }
+}

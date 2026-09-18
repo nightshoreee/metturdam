@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canals | Mettur Dam Irrigation</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<div id="sidebar"></div>
+<div class="main-content">
+  <div id="topbar" class="topbar"></div>
+  <div class="page-content">
+    <div id="alert-box"></div>
+    <div class="panel">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="h5 mb-0">All Canals</h2>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#canalModal" onclick="openAddCanalModal()">
+          <i class="bi bi-plus-lg"></i> Add Canal
+        </button>
+      </div>
+      <div class="table-responsive-wrap">
+        <table class="data-table">
+          <thead><tr>
+            <th>ID</th><th>Canal</th><th>Capacity (L/hr)</th><th>Source</th><th>Destination</th><th>Status</th><th>Utilization</th><th>Today's Allocations</th><th>Actions</th>
+          </tr></thead>
+          <tbody id="canals-tbody"><tr><td colspan="9">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="canalModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="canalModalTitle">Add Canal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="cn-canal-id">
+        <div class="mb-3"><label class="form-label">Canal Name</label><input class="form-control" id="cn-name"></div>
+        <div class="mb-3"><label class="form-label">Capacity (litres/hour)</label><input type="number" step="0.01" class="form-control" id="cn-capacity"></div>
+        <div class="mb-3"><label class="form-label">Source</label><input class="form-control" id="cn-source"></div>
+        <div class="mb-3"><label class="form-label">Destination</label><input class="form-control" id="cn-destination"></div>
+        <div class="mb-3">
+          <label class="form-label">Status</label>
+          <select class="form-select" id="cn-status"><option>ACTIVE</option><option>MAINTENANCE</option><option>INACTIVE</option></select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" onclick="saveCanal()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script>renderLayout('canals');</script>
+<script src="js/canals.js"></script>
+</body>
+</html>

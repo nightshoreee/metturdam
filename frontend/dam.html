@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dam Status | Mettur Dam Irrigation</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+<div id="sidebar"></div>
+<div class="main-content">
+  <div id="topbar" class="topbar"></div>
+  <div class="page-content">
+    <div id="alert-box"></div>
+
+    <div class="stat-grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="stat-card"><div class="stat-label">Water Level</div><div class="stat-value" id="dam-level">-</div></div>
+      <div class="stat-card"><div class="stat-label">Available Water</div><div class="stat-value" id="dam-available">-</div></div>
+      <div class="stat-card"><div class="stat-label">Release Rate</div><div class="stat-value" id="dam-release">-</div></div>
+      <div class="stat-card"><div class="stat-label">Last Updated</div><div class="stat-value" id="dam-updated" style="font-size:1.05rem;">-</div></div>
+    </div>
+
+    <div class="chart-card mb-4">
+      <h3>Historical Water Level &amp; Available Water (demo data)</h3>
+      <canvas id="chart-dam-history"></canvas>
+    </div>
+
+    <div class="panel">
+      <h2 class="h5">Log a New Reading</h2>
+      <p class="text-muted small">Demo data entry -- in a real deployment this would come from telemetry, not a manual form.</p>
+      <div class="row g-2 align-items-end">
+        <div class="col-md-3">
+          <label class="form-label">Water Level (m)</label>
+          <input type="number" step="0.01" class="form-control" id="new-level">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Available Water (litres)</label>
+          <input type="number" step="0.01" class="form-control" id="new-available">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Release Rate (L/hr)</label>
+          <input type="number" step="0.01" class="form-control" id="new-release">
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-primary w-100" onclick="recordReading()">Log Reading</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 class="h5">Reading History</h2>
+      <div class="table-responsive-wrap">
+        <table class="data-table">
+          <thead><tr><th>ID</th><th>Recorded At</th><th>Water Level (m)</th><th>Available Water</th><th>Release Rate (L/hr)</th></tr></thead>
+          <tbody id="history-tbody"><tr><td colspan="5">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script>renderLayout('dam');</script>
+<script src="js/dam.js"></script>
+</body>
+</html>

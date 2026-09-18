@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Water Scheduling | Mettur Dam Irrigation</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<div id="sidebar"></div>
+<div class="main-content">
+  <div id="topbar" class="topbar"></div>
+  <div class="page-content">
+    <div id="alert-box"></div>
+
+    <div class="panel">
+      <h2 class="h5">Request Water</h2>
+      <div class="row g-3">
+        <div class="col-md-4 form-section">
+          <label class="form-label">Farmer</label>
+          <select class="form-select" id="s-farmer-id" onchange="onFarmerChange()"></select>
+        </div>
+        <div class="col-md-4 form-section">
+          <label class="form-label">Land Parcel</label>
+          <select class="form-select" id="s-parcel-id" onchange="onParcelChange()"></select>
+        </div>
+        <div class="col-md-4 form-section">
+          <label class="form-label">Crop (from parcel)</label>
+          <input class="form-control" id="s-crop-display" disabled>
+        </div>
+
+        <div class="col-md-4 form-section">
+          <label class="form-label">Canal</label>
+          <select class="form-select" id="s-canal-id"></select>
+        </div>
+        <div class="col-md-4 form-section">
+          <label class="form-label">Start Date/Time</label>
+          <input type="datetime-local" class="form-control" id="s-start">
+        </div>
+        <div class="col-md-4 form-section">
+          <label class="form-label">End Date/Time</label>
+          <input type="datetime-local" class="form-control" id="s-end">
+        </div>
+
+        <div class="col-md-6 form-section">
+          <label class="form-label">Requested Water (litres)</label>
+          <input type="number" step="0.01" class="form-control" id="s-water">
+          <div class="form-text">Suggested from crop &amp; area: <span id="s-suggested">-</span></div>
+        </div>
+        <div class="col-md-6 d-flex align-items-end gap-2 form-section">
+          <button class="btn btn-outline-primary" onclick="checkAvailability()"><i class="bi bi-search"></i> Check Availability</button>
+          <button class="btn btn-primary" onclick="submitSchedule()"><i class="bi bi-send-check"></i> Submit Request</button>
+        </div>
+      </div>
+      <div id="check-result"></div>
+    </div>
+
+    <div class="panel">
+      <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+        <h2 class="h5 mb-0">All Schedules</h2>
+        <select class="form-select" id="filter-status" style="max-width:220px;" onchange="loadSchedules()">
+          <option value="">All statuses</option>
+          <option>PENDING</option><option>APPROVED</option><option>REJECTED</option><option>COMPLETED</option><option>CANCELLED</option>
+        </select>
+      </div>
+      <div class="table-responsive-wrap">
+        <table class="data-table">
+          <thead><tr>
+            <th>ID</th><th>Farmer</th><th>Crop</th><th>Canal</th><th>Start</th><th>End</th><th>Requested</th><th>Approved</th><th>Status</th><th>Actions</th>
+          </tr></thead>
+          <tbody id="schedules-tbody"><tr><td colspan="10">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script>renderLayout('schedules');</script>
+<script src="js/schedules.js"></script>
+</body>
+</html>
